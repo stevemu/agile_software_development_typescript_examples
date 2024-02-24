@@ -1,8 +1,4 @@
-const startTime = Date.now();
-const logWithTimeElapsed = (text: string) => {
-  const elapsedTime = Date.now() - startTime;
-  console.log(`${elapsedTime / 1000} | ${text}`);
-};
+import { logWithTimeElapsed } from './utils';
 
 export class Timer {
   constructor() {}
@@ -10,19 +6,19 @@ export class Timer {
   register(timeOut: number, timeOutId: number, timerClient: TimerClient) {
     // Set a timeout to call the timerClient.timeout method after timeOut milliseconds
     setTimeout(() => {
-      timerClient.timeout(timeOutId);
+      timerClient.timeOut(timeOutId);
     }, timeOut);
   }
 }
 
 interface TimerClient {
-  timeout(id: number): void;
+  timeOut(id: number): void;
 }
 
 class DoorTimerAdapter implements TimerClient {
   constructor(private timedDoor: TimedDoor) {}
 
-  timeout(id: number) {
+  timeOut(id: number) {
     this.timedDoor.doorTimedOut(id);
   }
 }

@@ -1,8 +1,4 @@
-const startTime = Date.now();
-const logWithTimeElapsed = (text: string) => {
-  const elapsedTime = Date.now() - startTime;
-  console.log(`${elapsedTime / 1000} | ${text}`);
-};
+import { logWithTimeElapsed } from './utils';
 
 export class Timer {
   constructor() {}
@@ -10,26 +6,18 @@ export class Timer {
   register(timeOut: number, timeOutId: number, timerClient: TimerClient) {
     // Set a timeout to call the timerClient.timeout method after timeOut milliseconds
     setTimeout(() => {
-      timerClient.timeout(timeOutId);
+      timerClient.timeOut(timeOutId);
     }, timeOut);
   }
 }
 
 interface TimerClient {
-  timeout(id: number): void;
-}
-
-class DoorTimerAdapter implements TimerClient {
-  constructor(private timedDoor: TimedDoor) {}
-
-  timeout(id: number) {
-    this.timedDoor.doorTimedOut(id);
-  }
+  timeOut(id: number): void;
 }
 
 const timer = new Timer();
 
-class TimedDoor implements Door {
+class TimedDoor implements Door, TimerClient {
   private isOpen = false;
   private timerId = 0;
 
@@ -40,16 +28,15 @@ class TimedDoor implements Door {
 
   unlock() {
     this.isOpen = true;
-
-    const doorTimerAdapter = new DoorTimerAdapter(this);
-    timer.register(2000, this.timerId++, doorTimerAdapter);
+    timer.register(2000, this.timerId++, this);
+    logWithTimeElapsed('Door unlocked');
   }
 
   isDoorOpen() {
     return this.isOpen;
   }
 
-  doorTimedOut(timeOutId: number) {
+  timeOut(timeOutId: number) {
     if (timeOutId === this.timerId - 1) {
       logWithTimeElapsed(`locking door due to timeout id ${timeOutId}`);
       this.lock();
