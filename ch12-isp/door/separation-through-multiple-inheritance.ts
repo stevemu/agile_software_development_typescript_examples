@@ -51,8 +51,9 @@ interface Door {
   isDoorOpen(): boolean;
 }
 
-const timedDoor = new TimedDoor();
+const timedDoor: Door = new TimedDoor();
 timedDoor.unlock();
+
 setTimeout(() => {
   timedDoor.lock();
   timedDoor.unlock();
