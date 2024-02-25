@@ -16,6 +16,7 @@ async function main() {
   }
 
   console.log('finished');
+  reader.close();
   process.exit(0);
 }
 
