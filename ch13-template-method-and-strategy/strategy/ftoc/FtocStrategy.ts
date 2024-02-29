@@ -1,6 +1,6 @@
-import { Reader } from '../../Reader';
-import { Application } from './Application';
-import { ApplicationRunner } from './ApplicationRunner';
+import { Reader } from '../../Reader.ts';
+import { Application } from './Application.ts';
+import { ApplicationRunner } from './ApplicationRunner.ts';
 
 export class FtoCStrategy implements Application {
   private reader!: Reader;

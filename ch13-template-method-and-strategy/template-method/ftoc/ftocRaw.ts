@@ -1,4 +1,4 @@
-import { Reader } from '../../Reader';
+import { Reader } from '../../Reader.ts';
 
 async function main() {
   const reader = new Reader();

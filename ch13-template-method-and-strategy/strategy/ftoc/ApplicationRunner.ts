@@ -1,4 +1,4 @@
-import { Application } from './Application';
+import { Application } from './Application.ts';
 
 export class ApplicationRunner {
   async run(application: Application) {
