@@ -5,8 +5,7 @@ export class BubbleSorter {
   constructor(private sortHandle: SortHandle) {}
 
   sort(arr: unknown[]): number {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.sortHandle.setArray(arr as any);
+    this.sortHandle.setArray(arr);
     const length = this.sortHandle.length;
     let operations = 0;
 
