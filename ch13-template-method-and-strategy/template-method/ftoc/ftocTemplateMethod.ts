@@ -1,4 +1,4 @@
-import { Reader } from './Reader';
+import { Reader } from '../../Reader';
 
 export abstract class Application {
   private isDone = false;
