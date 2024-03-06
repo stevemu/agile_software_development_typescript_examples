@@ -47,5 +47,7 @@ export class DrawCircleCommand implements Command {
   undo() {
     const index = this.shapes.findIndex((shape) => shape.circleId === this.circleId);
     this.shapes.splice(index, 1);
+
+    this.ui.drawShapes(this.shapes);
   }
 }
