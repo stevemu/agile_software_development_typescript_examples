@@ -1,13 +1,15 @@
 import { Reader } from '../../ch14-template-method-and-strategy/Reader.ts';
-import { UiImp } from './UiImp.ts';
+import { ConsoleUi } from './ConsoleUi.ts';
 import { DrawCircleCommand } from './DrawCircleCommand.ts';
 import { Box, Circle, Shape } from './shape.ts';
 import { DrawBoxCommand } from './DrawBoxCommand.ts';
+import { CharWriter } from './CharWriter.ts';
 
 const shapes: Shape[] = [];
 const commands = [];
 
-const ui = new UiImp();
+const consoleWriter = new CharWriter();
+const ui = new ConsoleUi(consoleWriter);
 const reader = new Reader();
 
 // ui.drawShapes([new Circle(1, 'red', 5, 5, 1), new Box(2, 'green', 5, 6, 2, 2)]);
