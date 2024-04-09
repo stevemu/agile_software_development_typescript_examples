@@ -1,14 +1,17 @@
-import { TimeSink } from './TimeSink';
+import { ClockObserver } from './ClockObserver';
+import { TimeSource } from './TimeSource';
 
-export class MockTimeSink implements TimeSink {
+export class MockTimeSink implements ClockObserver {
   private hours: number = 0;
   private minutes: number = 0;
   private seconds: number = 0;
 
-  setTime(hours: number, minutes: number, seconds: number): void {
-    this.hours = hours;
-    this.minutes = minutes;
-    this.seconds = seconds;
+  constructor(private source: TimeSource) {}
+
+  update(): void {
+    this.hours = this.source.getHours();
+    this.minutes = this.source.getMinutes();
+    this.seconds = this.source.getSeconds();
   }
 
   getHours(): number {
