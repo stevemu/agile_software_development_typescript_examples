@@ -1,7 +1,7 @@
-import { ErnieModem } from './ErnieModem';
-import { HayesModem } from './HayesModem';
+import { ErnieModem } from '../modem/ErnieModem';
+import { HayesModem } from '../modem/HayesModem';
 import { UnixModemConfigurator } from './UnixModemConfigurator';
-import { ZoomModem } from './ZoomModem';
+import { ZoomModem } from '../modem/ZoomModem';
 
 describe('ModemVisitor', () => {
   test('should configure a Hayes modem', () => {

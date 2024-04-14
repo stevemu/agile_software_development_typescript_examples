@@ -1,7 +1,7 @@
-import { ErnieModem } from './ErnieModem';
-import { HayesModem } from './HayesModem';
-import { ModemVisitor } from './ModemVisitor';
-import { ZoomModem } from './ZoomModem';
+import { ErnieModem } from '../modem/ErnieModem';
+import { HayesModem } from '../modem/HayesModem';
+import { ModemVisitor } from '../modem/ModemVisitor';
+import { ZoomModem } from '../modem/ZoomModem';
 
 export class MacModemConfigurator implements ModemVisitor {
   public visitHayes(m: HayesModem): void {
